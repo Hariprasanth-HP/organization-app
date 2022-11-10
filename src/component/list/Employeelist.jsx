@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { Paper } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -8,14 +8,15 @@ import Divider from "@mui/material/Divider";
 import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
-
+import Grid from "@mui/material/Grid";
+import { Typography } from "@mui/material";
+import Fab from "@mui/material/Fab";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import SearchIcon from "@mui/icons-material/Search";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Mycontext } from "../../store/Provider/Provider";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -45,7 +46,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -58,24 +58,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-/////////////////////////////////
-// import "../../../data.json"
-const Employeelist = ({ Aemployee }) => {
-  console.log("employee data", Aemployee);
-  const { employee } = useContext(Mycontext);
-  const [employees, setEmployees] = useState(Aemployee.employee);
+const Employeelist = () => {
+  const [employees, setEmployees] = useState([]);
   const [searchdata, setSearchdata] = useState("");
   const [searchteam, setSearchteam] = useState("");
-
   const [filteredsearch, setFilteredsearch] = useState(employees);
-  // useEffect(() => {
-  //   const Importing = async () => {
-  //     const data = await fetch("data.json");
-  //     const response = await data.json();
-  //     setEmployees(response.employee);
-  //   };
-  //   Importing();
-  // }, []);
+  useEffect(() => {
+    const data = fetch("data.json")
+      .then((data) => {
+        return data.json();
+      })
+      .then((r) => {
+        setEmployees(r.employee);
+      });
+  }, []);
+
   useEffect(() => {
     const filteredlist = employees.filter((employe) => {
       return employe.name.toLocaleLowerCase().includes(searchdata);
@@ -99,76 +96,126 @@ const Employeelist = ({ Aemployee }) => {
   const TeamChangeHandler = (e) => {
     setSearchteam(e.toLocaleLowerCase());
   };
-  console.log("searchteam", searchteam);
-  console.log("employees", employees);
+
+  const handleDelete = (id) => {
+    const filterdata = employees.filter((data) => data.ID !== id);
+    setEmployees(filterdata);
+  };
   return (
     <div>
       <Box
         sx={{
-          width: "400px",
+          width: "350px",
           maxWidth: "600px",
           bgcolor: "aliceblue",
         }}
       >
-        <nav aria-label="main mailbox folders">
-          <AppBar position="static">
-            <Toolbar>
-              <Search style={{ display: "flex" }}>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ "aria-label": "search" }}
-                  onChange={searchitem}
-                />
-                <ListItemButton onClick={handleClick}>
-                  {open ? (
-                    <ExpandLess onClick={() => setFilteredsearch(employees)} />
-                  ) : (
-                    <ExpandMore />
-                  )}
-                </ListItemButton>
-              </Search>
-              <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton
-                    sx={{ pl: 4 }}
-                    style={{ display: "flex", flexDirection: "column" }}
+        <AppBar position="static">
+          <Toolbar>
+            <Search style={{ display: "flex" }}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                onChange={searchitem}
+              />
+              <ListItemButton onClick={handleClick}>
+                {open ? (
+                  <ExpandLess onClick={() => setFilteredsearch(employees)} />
+                ) : (
+                  <ExpandMore />
+                )}
+              </ListItemButton>
+            </Search>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton
+                  disablePadding
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Fab
+                    variant="extended"
+                    size="small"
+                    color="primary"
+                    // aria-label="add"
+                    style={{ fontSize: "10px" }}
+                    onClick={() => TeamChangeHandler("A")}
                   >
-                    <ListItemText
-                      primary="Team A"
-                      onClick={() => TeamChangeHandler("A")}
-                    />
-                    <ListItemText
-                      primary="Team B"
-                      onClick={() => TeamChangeHandler("B")}
-                    />
-                    <ListItemText
-                      primary="Team C"
-                      onClick={() => TeamChangeHandler("C")}
-                    />
-                  </ListItemButton>
-                </List>
-              </Collapse>
-            </Toolbar>
-          </AppBar>
-          <List>
-            {filteredsearch.map((employee) => {
-              return (
-                <ListItem key={employee.name} disablePadding>
-                  <ListItemButton>
-                    <h6>
-                      <ListItemText primary={employee.name} />
-                    </h6>
-                    <ListItemText primary={employee.Designation} />
+                    Team A
+                  </Fab>
+                  <Fab
+                    variant="extended"
+                    size="small"
+                    color="primary"
+                    aria-label="add"
+                    style={{ fontSize: "10px" }}
+                    onClick={() => TeamChangeHandler("B")}
+                  >
+                    Team B
+                  </Fab>
+                  <Fab
+                    style={{ fontSize: "10px" }}
+                    variant="extended"
+                    size="small"
+                    color="primary"
+                    aria-label="add"
+                    onClick={() => TeamChangeHandler("C")}
+                  >
+                    Team C
+                  </Fab>
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </Toolbar>
+        </AppBar>
+        <Grid
+          item
+          xs={12}
+          style={{
+            height: "100vh",
+            overflow: "auto",
+          }}
+        >
+          {filteredsearch.map((employee) => {
+            return (
+              <Paper
+                elevation={8}
+                style={{
+                  width: "99%",
+                  color: "green",
+                }}
+              >
+                <ListItem key={employee.name}>
+                  <ListItemButton
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Typography variant="h6" disablePadding>
+                      {employee.name}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                      {employee.Designation}
+                    </Typography>
+
                     <ListItemText primary={employee.Team} />
+                    <button onClick={() => handleDelete(employee.ID)}>
+                      Delete
+                    </button>
                   </ListItemButton>
                 </ListItem>
-              );
-            })}
-          </List>
-        </nav>
+              </Paper>
+            );
+          })}
+        </Grid>
+
         <Divider />
       </Box>
     </div>
