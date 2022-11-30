@@ -1,0 +1,10 @@
+.employeelist {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  align-items: flex-start;
+}
+.employeelist:hover {
+  background-color: black;
+  color: white;
+}

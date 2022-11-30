@@ -1,12 +1,7 @@
 [
     {
-        "name": "Mark Hill",
-        "ID":"1",
-        "Designation":"Cheif excecutive officer",
-        "Team":"Head",
-        "Manager":" ",
-        "child":[
-            {
+        
+            
                 "name": "Joe Linux",
                 "ID":"2",
                 "Designation":"Cheif Technology Officer",
@@ -76,9 +71,9 @@
                         "Manager":4
                     }
                 ]
-            }
+            
 
-        ]
+        
 
     }
 ]

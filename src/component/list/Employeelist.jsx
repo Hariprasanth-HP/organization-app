@@ -17,6 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import "./Employeelist.css";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -97,15 +98,11 @@ const Employeelist = () => {
     setSearchteam(e.toLocaleLowerCase());
   };
 
-  const handleDelete = (id) => {
-    const filterdata = employees.filter((data) => data.ID !== id);
-    setEmployees(filterdata);
-  };
   return (
     <div>
       <Box
         sx={{
-          width: "350px",
+          width: "400px",
           maxWidth: "600px",
           bgcolor: "aliceblue",
         }}
@@ -190,25 +187,25 @@ const Employeelist = () => {
                   color: "green",
                 }}
               >
-                <ListItem key={employee.name}>
-                  <ListItemButton
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                    }}
-                  >
+                <ListItem className="employeelist" key={employee.name}>
+                  <ListItemButton>
+                    <img
+                      style={{
+                        width: "50px",
+                        height: "50px ",
+                        marginRight: "10px",
+                        borderRadius: "50%",
+                      }}
+                      src={`${employee.image}`}
+                    />
                     <Typography variant="h6" disablePadding>
                       {employee.name}
                     </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    <Typography sx={{ mb: 1.5 }}>
                       {employee.Designation}
                     </Typography>
 
                     <ListItemText primary={employee.Team} />
-                    <button onClick={() => handleDelete(employee.ID)}>
-                      Delete
-                    </button>
                   </ListItemButton>
                 </ListItem>
               </Paper>
