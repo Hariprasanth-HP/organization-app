@@ -102,7 +102,7 @@ const Employeelist = () => {
     <div>
       <Box
         sx={{
-          width: "400px",
+          width: "350px",
           maxWidth: "600px",
           bgcolor: "aliceblue",
         }}
