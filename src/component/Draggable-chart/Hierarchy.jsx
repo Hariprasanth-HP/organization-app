@@ -3,8 +3,15 @@ import Board from "./Board";
 import Cards from "./Cards";
 import { Card } from "react-bootstrap";
 import "./Hierarchy.css";
+<<<<<<< HEAD
 
 function Hierarchy({ employees }) {
+=======
+import { useEffect, useState } from "react";
+function Hierarchy({ employees }) {
+  console.log("employees iera", employees);
+
+>>>>>>> 60b6280 (my changes)
   return (
     <div className="Hierarchy">
       <main className="flexbox">
