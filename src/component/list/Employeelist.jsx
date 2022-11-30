@@ -127,9 +127,8 @@ const Employeelist = () => {
               </ListItemButton>
             </Search>
             <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
+              <List component="div">
                 <ListItemButton
-                  disablePadding
                   style={{
                     display: "flex",
                     flexDirection: "column",
@@ -198,9 +197,7 @@ const Employeelist = () => {
                       }}
                       src={`${employee.image}`}
                     />
-                    <Typography variant="h6" disablePadding>
-                      {employee.name}
-                    </Typography>
+                    <Typography variant="h6">{employee.name}</Typography>
                     <Typography sx={{ mb: 1.5 }}>
                       {employee.Designation}
                     </Typography>
