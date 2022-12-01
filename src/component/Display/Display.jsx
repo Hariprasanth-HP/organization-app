@@ -2,9 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-dom";
 import Displaycard from "./Displaycard";
 import { Paper } from "@mui/material";
+import { useSelector } from "react-redux";
+import { ResetTvRounded } from "@mui/icons-material";
+import "./display.css";
+import { useDispatch } from "react-redux";
+import { username } from "../../store/Display/action";
 
 const Display = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.AddUserReducer);
   const [data, setData] = useState([]);
+  console.log("data", data);
   useEffect(() => {
     const fetchdata = async () => {
       const data = await fetch("hierarchydata.json");
@@ -15,31 +23,52 @@ const Display = () => {
     fetchdata();
   }, []);
   return (
-    <div>
-      {data.map((dat) => {
-        if (dat.name === "Linda May" && dat.child) {
-          return (
-            <>
-              <Paper
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  padding: "5px",
-                }}
-              >
-                <img
-                  style={{ width: "70px", height: "70px", borderRadius: "50%" }}
-                  src={`${dat.image}`}
-                />
-                <p>{dat.name}</p>
-                <p>{dat.Designation}</p>
-              </Paper>
-              <Displaycard data={dat.child} />
-            </>
-          );
-        }
-      })}
+    <div className="display">
+      <div>
+        {data.map((dat) => {
+          if (dat.name === user.user && dat.child) {
+            return (
+              <>
+                <Paper className="displaypaper">
+                  <img
+                    style={{
+                      width: "70px",
+                      height: "70px",
+                      borderRadius: "50%",
+                    }}
+                    src={`${dat.image}`}
+                  />
+                  <p>{dat.name}</p>
+                  <p>{dat.Designation}</p>
+                </Paper>
+                <Displaycard data={dat.child} />
+              </>
+            );
+          } else if (dat.name !== user.user) {
+            return dat.child.map((sub) => {
+              if (sub.name === user.user) {
+                return (
+                  <Paper className="displaypaper">
+                    <img
+                      style={{
+                        width: "70px",
+                        height: "70px",
+                        borderRadius: "50%",
+                      }}
+                      src={`${sub.image}`}
+                    />
+
+                    <p>{sub.name}</p>
+                    <p>{sub.Designation}</p>
+                  </Paper>
+                );
+              }
+            });
+
+            //
+          }
+        })}
+      </div>
     </div>
   );
 };

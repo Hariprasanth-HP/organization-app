@@ -8,16 +8,7 @@ const Displaycard = ({ data }) => {
       {data.map((dat) => {
         return (
           <>
-            <Paper
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                background: "green",
-                color: "white",
-                margin: "2px",
-              }}
-            >
+            <Paper className="displaypaper">
               <img
                 style={{ width: "70px", height: "70px", borderRadius: "50%" }}
                 src={`${dat.image}`}

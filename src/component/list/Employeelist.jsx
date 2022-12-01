@@ -18,6 +18,9 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import "./Employeelist.css";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { displayuser, username } from "../../store/Display/action";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -60,6 +63,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Employeelist = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.AddUserReducer);
+  console.log("user", user);
   const [employees, setEmployees] = useState([]);
   const [searchdata, setSearchdata] = useState("");
   const [searchteam, setSearchteam] = useState("");
@@ -186,7 +192,11 @@ const Employeelist = () => {
                   color: "green",
                 }}
               >
-                <ListItem className="employeelist" key={employee.name}>
+                <ListItem
+                  className="employeelist"
+                  key={employee.name}
+                  onClick={(e) => dispatch(username(employee.name))}
+                >
                   <ListItemButton>
                     <img
                       style={{
