@@ -14,7 +14,6 @@ function AddUserReducer(state = values, action) {
       return { ...state, user: username, displayuser: true };
     case RESET:
       const reset = action.payload;
-      console.log("reset", reset);
       return { ...state, displayuser: reset };
 
     default:

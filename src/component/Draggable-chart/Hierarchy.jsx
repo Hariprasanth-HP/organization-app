@@ -3,14 +3,17 @@ import Board from "./Board";
 import Cards from "./Cards";
 import { Card } from "react-bootstrap";
 import "./Hierarchy.css";
-import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { username } from "../../store/Display/action";
+
+
 function Hierarchy({ employees }) {
-  console.log("employees iera", employees);
+  const dispatch = useDispatch();
 
   return (
     <div className="Hierarchy">
       <main className="flexbox">
-        <Card className="heading">
+        <Card  className="heading">
           <img
             className="image"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm0fpAKsLBD7bJsWiK_M4Btxn5-1wyfnkt3Q&usqp=CAU"
@@ -21,7 +24,8 @@ function Hierarchy({ employees }) {
           </Card.Body>
         </Card>
         <Board id="board-1" className="board">
-          <Cards id="card-1" className="card" draggable="true">
+          <Card 
+          id="card-1" className="card" draggable="true">
             <Card>
               <img
                 className="image"

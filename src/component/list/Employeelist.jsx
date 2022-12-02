@@ -65,7 +65,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Employeelist = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.AddUserReducer);
-  console.log("user", user);
   const [employees, setEmployees] = useState([]);
   const [searchdata, setSearchdata] = useState("");
   const [searchteam, setSearchteam] = useState("");

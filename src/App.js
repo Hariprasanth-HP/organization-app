@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 function App() {
   const user = useSelector((state) => state.AddUserReducer);
   const dispatch = useDispatch();
-  console.log("user", user);
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h3>Organization Chart</h3>

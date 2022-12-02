@@ -12,12 +12,10 @@ const Display = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.AddUserReducer);
   const [data, setData] = useState([]);
-  console.log("data", data);
   useEffect(() => {
     const fetchdata = async () => {
       const data = await fetch("hierarchydata.json");
       const response = await data.json();
-      console.log(response);
       setData(response);
     };
     fetchdata();
@@ -29,7 +27,7 @@ const Display = () => {
           if (dat.name === user.user && dat.child) {
             return (
               <>
-                <Paper className="displaypaper">
+                <Paper key={dat.name} className="displaypaper">
                   <img
                     style={{
                       width: "70px",
@@ -48,7 +46,7 @@ const Display = () => {
             return dat.child.map((sub) => {
               if (sub.name === user.user) {
                 return (
-                  <Paper className="displaypaper">
+                  <Paper key={sub.name} className="displaypaper">
                     <img
                       style={{
                         width: "70px",
