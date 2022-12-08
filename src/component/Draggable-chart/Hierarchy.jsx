@@ -3,12 +3,8 @@ import Board from "./Board";
 import Cards from "./Cards";
 import { Card } from "react-bootstrap";
 import "./Hierarchy.css";
-import { useDispatch } from "react-redux";
-import { username } from "../../store/Display/action";
 
 function Hierarchy({ employees }) {
-  const dispatch = useDispatch();
-
   return (
     <div className="Hierarchy">
       <main className="flexbox">

@@ -1,5 +1,5 @@
-import { ADD_USER_DETAIL } from "./constants";
-import { adduser } from "./action";
+import { USER_NAME } from "./constants";
+import { username } from "./action";
 import configureStore from "redux-mock-store";
 const initialState = { name: "", email: "" };
 const mockStore = configureStore();
@@ -15,11 +15,11 @@ describe("select_actions", () => {
       const expectedActions = [
         {
           payload: testState,
-          type: ADD_USER_DETAIL,
+          type: USER_NAME,
         },
       ];
 
-      store.dispatch(adduser(testState));
+      store.dispatch(username(testState));
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
