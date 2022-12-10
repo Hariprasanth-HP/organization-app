@@ -3,9 +3,9 @@ import { useNavigate } from "react-dom";
 import Displaycard from "./Displaycard";
 import { Paper } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ResetTvRounded } from "@mui/icons-material";
 import "./display.css";
-import { useDispatch } from "react-redux";
 import { username } from "../../store/Display/action";
 
 const Display = () => {

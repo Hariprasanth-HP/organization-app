@@ -5,13 +5,14 @@ import Display from "./component/Display/Display";
 import { reset } from "./store/Display/action";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import Form from "./component/Form";
 
 function App() {
   const user = useSelector((state) => state.AddUserReducer);
   const dispatch = useDispatch();
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <h3>Organization Chart</h3>
+      {/* <h3>Organization Chart</h3>
       <div className="App" style={{ display: "flex" }}>
         <Employeelist />
         {user.displayuser ? <Display /> : <Chart />}
@@ -21,7 +22,8 @@ function App() {
         >
           RESET
         </button>
-      </div>
+      </div> */}
+      <Form />
     </div>
   );
 }
