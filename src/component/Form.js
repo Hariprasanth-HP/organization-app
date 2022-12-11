@@ -1,7 +1,9 @@
-import React from "react";
+import { filledInputClasses } from "@mui/material";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Body from "./Body";
 const Form = () => {
+  const [details, setDetails] = useState([]);
   const [clicked, setClicked] = useState(false);
   const initialvalue = {
     PO_number: "",
@@ -20,6 +22,33 @@ const Form = () => {
     Price: "",
     AmountToPay: "",
   };
+  const [track, setTrack] = useState("");
+  const [contactnumber, setContactnumber] = useState("");
+  console.log("contactnumber", contactnumber);
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      const data = await fetch("dasa.json");
+      const response = await data.json();
+      setDetails(response.Details);
+      setTrack(response.Details[0].address);
+      // setContactnumber(response.Details[0].contact);
+    };
+    fetchdata();
+  }, []);
+  useEffect(() => {
+    const fetchcontact = async () => {
+      const cont = await details.filter((fil) => {
+        if (fil.address === track) {
+          return fil;
+        }
+      });
+      console.log("cont", cont);
+      setContactnumber(cont[0].contact);
+    };
+    fetchcontact();
+  }, [track]);
+
   const [formData, setFormData] = useState(initialvalue);
   const [state, setState] = useState({});
 
@@ -29,36 +58,12 @@ const Form = () => {
   };
   const [data, setData] = useState([]);
 
-  const appendChild = () => {
-    setData(...data, formData);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setState(formData);
     setFormData(initialvalue);
     setClicked(false);
   };
-  console.log("formadata", formData);
-  console.log("state", formData.PO_number);
-  //   const {
-  //     PO_number,
-  //     PO_date,
-  //     Buyer_GLN,
-  //     Buyer_contact,
-  //     Supplier_GLN,
-  //     Supplier_contact,
-  //     ShiptoGLN,
-  //     Shiptocontact,
-  //     S_NO,
-  //     Item_name,
-  //     GTIN,
-  //     Article_no,
-  //     Quantiy,
-  //     Price,
-  //     AmountToPay,
-  //   } = formErrors;
-  console.log("Object.entries(state).PO_number", Object.entries(state)[1]);
 
   return (
     <>
@@ -96,22 +101,17 @@ const Form = () => {
           </div>
 
           <div>
-            <label>PO Date</label>
+            <label>Buyer GLN</label>
+            <select value={track} onChange={(e) => setTrack(e.target.value)}>
+              {details.map((add) => {
+                return <option key={add.contact}>{add.address}</option>;
+              })}
+            </select>
 
-            <input
-              value={formData.Buyer_GLN}
-              onChange={handleChange}
-              placeholder="Buyer_GLN"
-              type="text"
-              className="input"
-              name="Buyer_GLN"
-              required
-            />
             <label>Buyer Contact</label>
 
             <input
-              value={formData.Buyer_contact}
-              onChange={handleChange}
+              value={contactnumber}
               placeholder="Buyer_contact"
               type="text"
               className="input"
