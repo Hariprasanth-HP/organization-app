@@ -22,36 +22,29 @@ const Form = () => {
     Price: "",
     AmountToPay: "",
   };
+  const [formData, setFormData] = useState(initialvalue);
+  const [state, setState] = useState({});
   const [track, setTrack] = useState("");
   const [contactnumber, setContactnumber] = useState("");
-  console.log("contactnumber", contactnumber);
-
   useEffect(() => {
     const fetchdata = async () => {
       const data = await fetch("dasa.json");
       const response = await data.json();
       setDetails(response.Details);
       setTrack(response.Details[0].address);
-      // setContactnumber(response.Details[0].contact);
     };
     fetchdata();
   }, []);
   useEffect(() => {
     const fetchcontact = async () => {
-      const cont = await details.filter((fil) => {
+      const cont = details.filter((fil) => {
         if (fil.address === track) {
-          return fil;
+          setContactnumber(fil.contact);
         }
       });
-      console.log("cont", cont);
-      setContactnumber(cont[0].contact);
     };
     fetchcontact();
   }, [track]);
-
-  const [formData, setFormData] = useState(initialvalue);
-  const [state, setState] = useState({});
-
   const handleChange = (e) => {
     const inp = e.target.value;
     setFormData({ ...formData, [e.target.name]: inp });
@@ -109,9 +102,9 @@ const Form = () => {
             </select>
 
             <label>Buyer Contact</label>
-
+            {/* <textarea>{contactnumber}</textarea> */}
             <input
-              value={contactnumber}
+              defaultValue={contactnumber}
               placeholder="Buyer_contact"
               type="text"
               className="input"
