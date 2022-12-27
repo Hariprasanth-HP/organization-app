@@ -1,0 +1,9 @@
+.adminpage {
+  display: flex;
+}
+.login {
+  width: 40%;
+}
+.logindisplay {
+  width: 50%;
+}
