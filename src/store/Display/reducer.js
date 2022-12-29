@@ -46,6 +46,5 @@ function AddUserReducer(state = values, action) {
       return state;
   }
 }
-console.log("state", values);
 const MyReducer = combineReducers({ AddUserReducer });
 export default MyReducer;

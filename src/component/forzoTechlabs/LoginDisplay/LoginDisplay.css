@@ -1,5 +1,5 @@
 .logindisplay {
-  height: 109vh;
+  height: 99vh;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -69,4 +69,7 @@ p {
   align-items: flex-end;
   justify-content: end;
   margin: -14px 10px -15px 0;
+}
+.giff {
+  overflow: hidden;
 }

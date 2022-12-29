@@ -23,11 +23,8 @@ const LoginDisplay = () => {
   }, [user.employees]);
   const handleEdit = (val) => {
     if (user.isEdit) {
-      alert("editemp if");
-
       return;
     } else {
-      alert("editemp");
       dispatch(editEmployee(val, true));
     }
   };

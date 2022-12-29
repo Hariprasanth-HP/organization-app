@@ -63,7 +63,6 @@ const Login = () => {
   } = employeeDetails;
 
   const handleChange = (e, key) => {
-    console.log(e);
     let date = `${e.$D}/${e.$M + 1}/${e.$y}`;
     if (key === "dob") {
       setEmployeeDetails({
@@ -77,7 +76,6 @@ const Login = () => {
       });
     }
   };
-  console.log("employeeDetails", employeeDetails);
   const [isopen, setisOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -156,12 +154,10 @@ const Login = () => {
                     params.error = false;
                     return (
                       <TextField
-                        onChange={(e) => alert(e)}
                         value={dob ? dob : params.inputProps.value}
                         size="small"
                         {...params}
                       />
-                      // {params.inputProps.value = ""}
                     );
                   }}
                 />
