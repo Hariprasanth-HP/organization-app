@@ -1,6 +1,72 @@
 .logindisplay {
-  height: 94vh;
-
-  width: 90%;
-  margin: 10px 0px 10px 10px;
+  height: 109vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px 10px 10px -10px;
+  /* padding-top: 15px; */
+  align-items: center;
+  overflow: auto;
+}
+.avatar {
+  margin-top: 10px;
+}
+.logindisplaypaper {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  margin: 15px 15px 15px 15px;
+  width: 95%;
+}
+.childdetails {
+  display: flex;
+  /* flex-direction: column; */
+}
+.childdetailsentry {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  width: 77%;
+}
+.details {
+  display: flex;
+  align-items: center;
+  margin: 1px;
+}
+.detailsphone {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 1px;
+}
+.heading {
+  margin: 0;
+}
+.profile {
+  width: 15px;
+  height: 15px;
+  margin-right: 20px;
+}
+p {
+  font-size: 15px;
+  margin: 0;
+}
+.updatebutton {
+  background-color: #4274bf !important;
+  border-radius: 360px !important;
+  width: 20% !important;
+  margin: 20px !important;
+}
+.cancelbutton {
+  background-color: #d64742 !important;
+  border-radius: 360px !important;
+  width: 20% !important;
+  margin: 20px !important;
+  color: white !important;
+}
+.editdelete {
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  margin: -14px 10px -15px 0;
 }

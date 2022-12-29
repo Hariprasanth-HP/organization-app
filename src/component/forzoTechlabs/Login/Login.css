@@ -1,16 +1,14 @@
-.login {
+.logincontent {
   display: flex;
   flex-direction: column;
   width: 90%;
   height: 97vh;
-  margin: 10px 0px 10px 10px;
+  margin: 20px 0px 0 20px !important;
 }
 .loginimage {
-  position: relative;
-  top: 0;
-  left: 490px;
-  width: 100px;
-  height: 100px;
+  width: 123px;
+  height: 126px;
+  margin-left: 27rem;
 }
 .outlined-basic-half {
   width: 47%;
@@ -20,7 +18,7 @@
 .outlined-basic-full {
   width: 95%;
   height: 30px !important;
-  margin: 10px !important;
+  margin: 0px 5px 20px 10px !important;
 }
 .outlined-basic-40 {
   width: 36%;
@@ -32,13 +30,49 @@
   height: 30px;
   margin: 10px 5px 10px 10px !important;
 }
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .savebutton {
-  background-color: #7d45ba;
-  border-radius: 360px;
-  width: 20%;
+  background-color: #7d45ba !important;
+  border-radius: 360px !important;
+  width: 20% !important;
+  margin: 20px !important;
 }
 .datepicker {
   width: 36%;
   height: 30px;
+  margin: 0px 5px 20px 10px !important;
+}
+
+.heading1 {
+  width: 200px;
+  color: #2d0658 !important;
+  margin: -41px 0 15px 10px;
+  left: 0;
+}
+.heading2 {
+  width: 200px;
+  color: #2d0658 !important;
+  margin: 0px 0 10px 10px;
+  margin-left: 27rem;
+}
+.updatebutton {
+  background-color: #4274bf !important;
+  border-radius: 360px !important;
+  width: 20% !important;
+  margin: 20px !important;
+}
+.cancelbutton {
+  background-color: #d64742 !important;
+  border-radius: 360px !important;
+  width: 20% !important;
+  margin: 20px !important;
+}
+.date {
+  width: 36%;
+  height: 35px;
   margin: 10px 5px 20px 10px !important;
 }

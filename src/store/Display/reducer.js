@@ -1,34 +1,51 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { USER_NAME, RESET, VALUES } from "./constants";
-const values = {
-  user: "",
-  displayuser: false,
-  values: "",
+import {
+  ADD_EMPLOYEE,
+  UPDATE_EMPLOYEE,
+  EDIT_EMPLOYEE,
+  DELETE_EMPLOYEE,
+} from "./constants";
+let values = {
+  employees: [],
+  editEmp: "",
+  isEdit: false,
+  updateEmp: "",
+  // deleteEmp: false,
 };
-// Use the initialState as a default value
 function AddUserReducer(state = values, action) {
-  // The reducer normally looks at the action type field to decide what happens
   switch (action.type) {
-    // Do something here based on the different types of actions
-    case USER_NAME:
-      const username = action.payload;
-      return { ...state, user: username, displayuser: true };
-    case RESET:
-      const reset = action.payload;
-      return { ...state, displayuser: reset };
-    case VALUES:
-      const value = action.payload;
-      alert("values reducer", value.name);
-      console.log("values reducer", value);
+    case ADD_EMPLOYEE:
+      const employee = action.payload;
+      return { ...state, employees: [...state.employees, employee] };
+    case EDIT_EMPLOYEE:
+      const editemployee = action.payload1;
+      const isedit = action.payload2;
+      return { ...state, editEmp: editemployee, isEdit: isedit };
+    case UPDATE_EMPLOYEE:
+      const updateemployee = action.payload1;
+      const updateemployeeID = action.payload2;
+      const newArray = [...state.employees];
+      newArray[updateemployeeID] = updateemployee;
 
-      console.log("value", value);
-      return { ...state, values: value };
+      return {
+        ...state,
+        employees: newArray,
+        isEdit: !state.isEdit,
+      };
+    case DELETE_EMPLOYEE:
+      const deleteemployeeID = action.payload;
 
+      const newdelete = state.employees.filter((val, index) => {
+        return index !== deleteemployeeID;
+      });
+      return {
+        ...state,
+        employees: newdelete,
+      };
     default:
-      // If this reducer doesn't recognize the action type, or doesn't
-      // care about this specific action, return the existing state unchanged
       return state;
   }
 }
+console.log("state", values);
 const MyReducer = combineReducers({ AddUserReducer });
 export default MyReducer;
