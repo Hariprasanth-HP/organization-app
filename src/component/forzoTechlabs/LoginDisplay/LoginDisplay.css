@@ -6,8 +6,21 @@
   margin: 10px 10px 10px -10px;
   /* padding-top: 15px; */
   align-items: center;
-  overflow: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
+.logindisplay::-webkit-scrollbar {
+  display: none;
+}
+/* .row_posters {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+}
+.row_posters::-webkit-scrollbar {
+  display: none;
+} */
 .avatar {
   margin-top: 10px;
 }
