@@ -1,5 +1,5 @@
 .logindisplay {
-  height: 99vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -70,6 +70,21 @@ p {
   justify-content: end;
   margin: -14px 10px -15px 0;
 }
+.employeenot {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
 .giff {
+  width: 400px;
+  height: 400px;
   overflow: hidden;
+}
+.heading1 {
+  /* width: 200px; */
+  color: #2d0658 !important;
+  margin-top: -30px;
+  /* left: 0; */
 }

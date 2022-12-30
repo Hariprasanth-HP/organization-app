@@ -100,7 +100,10 @@ const LoginDisplay = () => {
           })}
         </Paper>
       ) : (
-        <img alt="" className="giff" src={employees} />
+        <div className="employeenot">
+          <img alt="" className="giff" src={employees} />
+          <h3 className="heading1">No Employees Found!</h3>
+        </div>
       )}
     </>
   );

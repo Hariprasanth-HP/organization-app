@@ -33,10 +33,6 @@ const Login = () => {
     branch: "",
   };
   const [employeeDetails, setEmployeeDetails] = useState(initialState);
-  // useEffect(() => {
-  //   setUsers(user.employees);
-  //   setEditper(user.editEmp);
-  // }, []);
 
   useEffect(() => {
     if (user.employees[user.editEmp] === 0 || user.employees[user.editEmp]) {
@@ -85,18 +81,19 @@ const Login = () => {
   const handleClose = () => {
     setisOpen(!isopen);
   };
-
+  console.log("user", user.updateEmp);
   const handleSave = (e, emp, index) => {
     e.preventDefault();
     handleClickOpen();
     if (user.isEdit) {
-      dispatch(updateEmployee(employeeDetails, user.editEmp));
+      dispatch(updateEmployee(employeeDetails, user.editEmp, true));
       dispatch(editEmployee("", false));
     } else {
-      dispatch(addEmployee(employeeDetails));
+      dispatch(addEmployee(employeeDetails, false));
     }
     setEmployeeDetails(initialState);
   };
+
   return (
     <div className="logincontent">
       <Paper elevation={3}>
@@ -109,6 +106,7 @@ const Login = () => {
               <h3 className="heading1">Add Employee</h3>
 
               <TextField
+                required
                 className="outlined-basic-half"
                 InputProps={{ sx: { height: 40 } }}
                 placeholder="First Name"
@@ -118,6 +116,7 @@ const Login = () => {
                 value={firstname}
               />
               <TextField
+                required
                 name="lastname"
                 onChange={(e) => handleChange(e)}
                 value={lastname}
@@ -127,6 +126,7 @@ const Login = () => {
                 variant="outlined"
               />
               <TextField
+                required
                 name="mobile"
                 onChange={(e) => handleChange(e)}
                 value={mobile}
@@ -136,6 +136,7 @@ const Login = () => {
                 variant="outlined"
               />
               <TextField
+                required
                 name="email"
                 onChange={(e) => handleChange(e)}
                 value={email}
@@ -154,6 +155,7 @@ const Login = () => {
                     params.error = false;
                     return (
                       <TextField
+                        required
                         value={dob ? dob : params.inputProps.value}
                         size="small"
                         {...params}
@@ -163,6 +165,7 @@ const Login = () => {
                 />
               </LocalizationProvider>
               <TextField
+                required
                 name="address"
                 onChange={(e) => handleChange(e)}
                 value={address}
@@ -175,6 +178,7 @@ const Login = () => {
               <h3 className="heading2">Bank Details</h3>
 
               <TextField
+                required
                 name="ACno"
                 onChange={(e) => handleChange(e)}
                 value={ACno}
@@ -184,6 +188,7 @@ const Login = () => {
                 variant="outlined"
               />
               <TextField
+                required
                 name="ifsc"
                 onChange={(e) => handleChange(e)}
                 value={ifsc}
@@ -193,6 +198,7 @@ const Login = () => {
                 variant="outlined"
               />
               <TextField
+                required
                 name="bank"
                 onChange={(e) => handleChange(e)}
                 value={bank}
@@ -202,6 +208,7 @@ const Login = () => {
                 variant="outlined"
               />
               <TextField
+                required
                 name="branch"
                 onChange={(e) => handleChange(e)}
                 value={branch}
@@ -233,6 +240,20 @@ const Login = () => {
                     className="savebutton"
                     type="submit"
                     variant="contained"
+                    disabled={
+                      (firstname &&
+                        lastname &&
+                        mobile &&
+                        email &&
+                        dob &&
+                        address &&
+                        ACno &&
+                        ifsc &&
+                        bank &&
+                        branch) !== ""
+                        ? false
+                        : true
+                    }
                   >
                     <SaveBox
                       handleSaveOpen={handleClickOpen}

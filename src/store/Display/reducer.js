@@ -10,13 +10,17 @@ let values = {
   editEmp: "",
   isEdit: false,
   updateEmp: "",
-  // deleteEmp: false,
 };
 function AddUserReducer(state = values, action) {
   switch (action.type) {
     case ADD_EMPLOYEE:
-      const employee = action.payload;
-      return { ...state, employees: [...state.employees, employee] };
+      const employee = action.payload1;
+      const isUpdateemp = action.payload2;
+      return {
+        ...state,
+        employees: [...state.employees, employee],
+        updateEmp: isUpdateemp,
+      };
     case EDIT_EMPLOYEE:
       const editemployee = action.payload1;
       const isedit = action.payload2;
@@ -24,6 +28,7 @@ function AddUserReducer(state = values, action) {
     case UPDATE_EMPLOYEE:
       const updateemployee = action.payload1;
       const updateemployeeID = action.payload2;
+      const isUpdate = action.payload3;
       const newArray = [...state.employees];
       newArray[updateemployeeID] = updateemployee;
 
@@ -31,6 +36,7 @@ function AddUserReducer(state = values, action) {
         ...state,
         employees: newArray,
         isEdit: !state.isEdit,
+        updateEmp: isUpdate,
       };
     case DELETE_EMPLOYEE:
       const deleteemployeeID = action.payload;
