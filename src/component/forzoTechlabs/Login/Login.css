@@ -10,6 +10,7 @@
   height: 126px;
   margin-left: 27rem;
 }
+
 .outlined-basic-half {
   width: 47%;
   height: 30px;
@@ -75,4 +76,16 @@
   width: 36%;
   height: 35px;
   margin: 10px 5px 20px 10px !important;
+}
+.css-1elh4rt-MuiInputBase-root-MuiOutlinedInput-root {
+  border: 1px solid #7d45ba !important;
+}
+.css-1elh4rt-MuiInputBase-root-MuiOutlinedInput-root {
+  color: #7d45ba !important;
+}
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+  border: 1px solid #7d45ba !important;
+}
+.css-1pysi21-MuiFormLabel-root-MuiInputLabel-root {
+  color: #7d45ba !important;
 }
