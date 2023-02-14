@@ -8,6 +8,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useSelector } from "react-redux";
+import useCustomHook from "../../../useCustomHook";
 import {
   addEmployee,
   updateEmployee,
@@ -45,6 +46,7 @@ const Login = () => {
       setEmployeeDetails(initialState);
     }
   }, [user.editEmp]);
+  // const {firstname,lastname}=
   const {
     firstname,
     lastname,
@@ -57,7 +59,7 @@ const Login = () => {
     bank,
     branch,
   } = employeeDetails;
-
+  console.log("employeeDetails", employeeDetails);
   const handleChange = (e, key) => {
     let date = `${e.$D}/${e.$M + 1}/${e.$y}`;
     if (key === "dob") {
@@ -73,7 +75,14 @@ const Login = () => {
     }
   };
   const [isopen, setisOpen] = React.useState(false);
-
+  const obj = {
+    name: "hari",
+  };
+  Object.defineProperty(obj, "secret", {
+    enumerable: false,
+    value: "hi dude",
+  });
+  console.log("obj", obj);
   const handleClickOpen = () => {
     setisOpen(true);
   };
@@ -81,7 +90,6 @@ const Login = () => {
   const handleClose = () => {
     setisOpen(!isopen);
   };
-  console.log("user", user.updateEmp);
   const handleSave = (e, emp, index) => {
     e.preventDefault();
     handleClickOpen();
@@ -93,9 +101,25 @@ const Login = () => {
     }
     setEmployeeDetails(initialState);
   };
-
+  const str = "my name is hari";
+  const kebabCase = (str) => {
+    const data = str
+      .match(
+        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+      )
+      .join("-")
+      .toLowerCase();
+    setEmployeeDetails({ ...employeeDetails, lastname: data });
+    // console.log("data", data);
+  };
+  // console.log("kebabCase", kebabCase(str));
+  const countClick = useCustomHook(0, "login");
   return (
     <div className="logincontent">
+      <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
       <Paper elevation={3}>
         <div>
           <div className="loginimagediv">
@@ -114,12 +138,17 @@ const Login = () => {
                 name="firstname"
                 onChange={(e) => handleChange(e)}
                 value={firstname}
+                onBlur={(e) => kebabCase(e.target.value)}
               />
               <TextField
                 required
                 name="lastname"
-                onChange={(e) => handleChange(e)}
-                value={lastname}
+                onChange={(e) => {
+                  console.log("eee", e.target.value);
+                  handleChange(e);
+                }}
+                // inputRef={firstname}
+                value={lastname ? lastname : ""}
                 className="outlined-basic-half"
                 InputProps={{ sx: { height: 40 } }}
                 placeholder="Last Name"
@@ -217,6 +246,7 @@ const Login = () => {
                 placeholder="Bank Branch"
                 variant="outlined"
               />
+              <button onClick={countClick}>click to see count</button>
               <div className="buttons">
                 {user.isEdit ? (
                   <>

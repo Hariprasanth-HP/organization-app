@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { reset } from "./store/Display/action";
+import Child from "./component/child";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -11,7 +12,8 @@ function App() {
   const dispatch = useDispatch();
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <DisplaySheet />
+      {/* <DisplaySheet /> */}
+      <Child />
     </div>
   );
 }
