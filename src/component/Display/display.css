@@ -1,0 +1,18 @@
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.displaypaper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+.displaypaper:hover {
+  background-color: rgb(207, 18, 135);
+  color: white;
+}
