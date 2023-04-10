@@ -1,54 +1,33 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import {
-  ADD_EMPLOYEE,
-  UPDATE_EMPLOYEE,
-  EDIT_EMPLOYEE,
-  DELETE_EMPLOYEE,
-} from "./constants";
-let values = {
-  employees: [],
-  editEmp: "",
-  isEdit: false,
-  updateEmp: "",
+import { USER_NAME, RESET, VALUES } from "./constants";
+const values = {
+  user: "",
+  displayuser: false,
+  values: "",
 };
+// Use the initialState as a default value
 function AddUserReducer(state = values, action) {
+  // The reducer normally looks at the action type field to decide what happens
   switch (action.type) {
-    case ADD_EMPLOYEE:
-      const employee = action.payload1;
-      const isUpdateemp = action.payload2;
-      return {
-        ...state,
-        employees: [...state.employees, employee],
-        updateEmp: isUpdateemp,
-      };
-    case EDIT_EMPLOYEE:
-      const editemployee = action.payload1;
-      const isedit = action.payload2;
-      return { ...state, editEmp: editemployee, isEdit: isedit };
-    case UPDATE_EMPLOYEE:
-      const updateemployee = action.payload1;
-      const updateemployeeID = action.payload2;
-      const isUpdate = action.payload3;
-      const newArray = [...state.employees];
-      newArray[updateemployeeID] = updateemployee;
+    // Do something here based on the different types of actions
+    case USER_NAME:
+      const username = action.payload;
+      return { ...state, user: username, displayuser: true };
+    case RESET:
+      const reset = action.payload;
+      console.log("reste");
+      return { ...state, displayuser: reset };
+    case VALUES:
+      const value = action.payload;
+      alert("values reducer", value.name);
+      console.log("values reducer", value);
 
-      return {
-        ...state,
-        employees: newArray,
-        isEdit: !state.isEdit,
-        updateEmp: isUpdate,
-      };
-    case DELETE_EMPLOYEE:
-      const deleteemployeeID = action.payload;
+      console.log("value", value);
+      return { ...state, values: value };
 
-      const newdelete = state.employees.filter((val, index) => {
-        return index !== deleteemployeeID;
-      });
-      return {
-        ...state,
-        employees: newdelete,
-      };
     default:
+      // If this reducer doesn't recognize the action type, or doesn't
+      // care about this specific action, return the existing state unchanged
       return state;
   }
 }
