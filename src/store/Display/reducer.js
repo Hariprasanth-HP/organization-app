@@ -1,9 +1,12 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { USER_NAME, RESET, VALUES } from "./constants";
+import { USER_NAME, RESET, VALUES, LOGIN } from "./constants";
 const values = {
   user: "",
   displayuser: false,
   values: "",
+  email: "admin@gmail.com",
+  password: "admin1234",
+  isLogged: false,
 };
 // Use the initialState as a default value
 function AddUserReducer(state = values, action) {
@@ -24,7 +27,10 @@ function AddUserReducer(state = values, action) {
 
       console.log("value", value);
       return { ...state, values: value };
-
+    case LOGIN:
+      const log = action.payload;
+      console.log("log", log);
+      return { ...state, isLogged: log };
     default:
       // If this reducer doesn't recognize the action type, or doesn't
       // care about this specific action, return the existing state unchanged
