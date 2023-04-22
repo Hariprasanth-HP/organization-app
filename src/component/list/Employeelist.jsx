@@ -20,6 +20,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import "./Employeelist.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import women1 from "../icons/women2.png";
 import { displayuser, username } from "../../store/Display/action";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -183,6 +184,8 @@ const Employeelist = () => {
           }}
         >
           {filteredsearch.map((employee) => {
+            var projectImage = "icons/" + employee.image;
+
             return (
               <Paper
                 elevation={8}
@@ -204,7 +207,7 @@ const Employeelist = () => {
                         marginRight: "10px",
                         borderRadius: "50%",
                       }}
-                      src={`${employee.image}`}
+                      src={projectImage}
                     />
                     <Typography variant="h6">{employee.name}</Typography>
                     <Typography sx={{ mb: 1.5 }}>

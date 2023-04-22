@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "organization-app-24020"
-  }
+    "default": "organization-plan",
+    "staging": "organization-plan"
+  },
+  "targets": {},
+  "etags": {}
 }

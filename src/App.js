@@ -28,7 +28,7 @@ function App() {
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <h3>Organization Chart</h3>
+          <h3>Project Management</h3>
           <div className="App" style={{ display: "flex" }}>
             <Employeelist />
             {user.displayuser ? <Display /> : <Chart />}
