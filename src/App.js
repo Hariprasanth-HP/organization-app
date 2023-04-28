@@ -29,20 +29,6 @@ function App() {
       ) : (
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h3>Project Management</h3>
-          <div className="App" style={{ display: "flex" }}>
-            <Employeelist />
-            {user.displayuser ? <Display /> : <Chart />}
-            <button
-              style={{ height: "10%", background: "red", color: "white" }}
-              onClick={() => {
-                dispatch(logged(false));
-
-                dispatch(reset(false));
-              }}
-            >
-              Log Out
-            </button>
-          </div>
         </div>
       )}
     </>
