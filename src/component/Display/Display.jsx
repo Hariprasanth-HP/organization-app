@@ -24,6 +24,7 @@ const Display = () => {
     <div className="display">
       <div>
         {data.map((dat) => {
+          var projectImage = "icons/" + dat.image;
           if (dat.name === user.user && dat.child) {
             return (
               <>
@@ -34,7 +35,7 @@ const Display = () => {
                       height: "70px",
                       borderRadius: "50%",
                     }}
-                    src={`${dat.image}`}
+                    src={`${projectImage}`}
                   />
                   <p>{dat.name}</p>
                   <p>{dat.Designation}</p>
@@ -44,6 +45,7 @@ const Display = () => {
             );
           } else if (dat.name !== user.user) {
             return dat.child.map((sub) => {
+              var projectImage = "icons/" + sub.image;
               if (sub.name === user.user) {
                 return (
                   <Paper key={sub.name} className="displaypaper">
@@ -53,7 +55,7 @@ const Display = () => {
                         height: "70px",
                         borderRadius: "50%",
                       }}
-                      src={`${sub.image}`}
+                      src={`${projectImage}`}
                     />
 
                     <p>{sub.name}</p>

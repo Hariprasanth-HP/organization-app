@@ -20,7 +20,7 @@ function Hierarchy({ employees }) {
         <Card className="heading">
           <img className="image" src={men2} />
           <Card.Body>
-            <Card.Title>Mark Hill</Card.Title>
+            <Card.Title>Gokul</Card.Title>
             <Card.Text>Cheif Excecutive officer</Card.Text>
           </Card.Body>
         </Card>

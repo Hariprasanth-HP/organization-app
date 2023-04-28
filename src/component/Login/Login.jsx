@@ -68,6 +68,14 @@ const LoginPage = () => {
                     Please Enter the correct credentials
                   </p>
                 )}
+                <Button
+                  style={{ marginTop: "20px", marginLeft: "50px" }}
+                  variant="primary"
+                  type="submit"
+                  block
+                >
+                  New User
+                </Button>
               </Form>
             </div>
           </div>
