@@ -11,7 +11,6 @@ function App() {
   const user = useSelector((state) => state.AddUserReducer);
   const dispatch = useDispatch();
   const { isLogged } = user;
-  console.log("user.isLogged", isLogged === false);
 
   return (
     <>
@@ -29,6 +28,20 @@ function App() {
       ) : (
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h3>Project Management</h3>
+          <div className="App" style={{ display: "flex" }}>
+            <Employeelist />
+            {user.displayuser ? <Display /> : <Chart />}
+            <button
+              style={{ height: "10%", background: "red", color: "white" }}
+              onClick={() => {
+                dispatch(logged(false));
+
+                dispatch(reset(false));
+              }}
+            >
+              Log Out
+            </button>
+          </div>
         </div>
       )}
     </>
